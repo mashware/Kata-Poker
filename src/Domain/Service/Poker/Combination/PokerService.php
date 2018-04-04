@@ -22,7 +22,7 @@ class PokerService implements Combination
         $sameNumberCardCount = array_count_values($arrayOfIdentifiers);
         rsort($sameNumberCardCount);
 
-        return $sameNumberCardCount[0] === 4 ? true : false;
+        return $sameNumberCardCount[0] >= 4 ? true : false;
     }
 
 }

@@ -9,57 +9,57 @@ use Kata\Domain\Service\Poker\Combination\Combination;
 class CheckHandService
 {
     private $pokerService;
-    private $ColorService;
-    private $DoublePairService;
-    private $FullService;
-    private $LadderColorService;
-    private $LadderRoyalService;
-    private $LadderService;
-    private $PairService;
-    private $ThreeOfAKindService;
+    private $colorService;
+    private $doublePairService;
+    private $fullService;
+    private $ladderColorService;
+    private $ladderRoyalService;
+    private $ladderService;
+    private $pairService;
+    private $threeOfAKindService;
 
     public function __construct(
         Combination $pokerService,
-        Combination $ColorService,
-        Combination $DoublePairService,
-        Combination $FullService,
-        Combination $LadderColorService,
-        Combination $LadderRoyalService,
-        Combination $LadderService,
-        Combination $PairService,
-        Combination $ThreeOfAKindService
+        Combination $colorService,
+        Combination $doublePairService,
+        Combination $fullService,
+        Combination $ladderColorService,
+        Combination $ladderRoyalService,
+        Combination $ladderService,
+        Combination $pairService,
+        Combination $threeOfAKindService
     ) {
         $this->pokerService = $pokerService;
-        $this->ColorService = $ColorService;
-        $this->DoublePairService = $DoublePairService;
-        $this->FullService = $FullService;
-        $this->LadderColorService = $LadderColorService;
-        $this->LadderRoyalService = $LadderRoyalService;
-        $this->LadderService = $LadderService;
-        $this->PairService = $PairService;
-        $this->ThreeOfAKindService = $ThreeOfAKindService;
+        $this->colorService = $colorService;
+        $this->doublePairService = $doublePairService;
+        $this->fullService = $fullService;
+        $this->ladderColorService = $ladderColorService;
+        $this->ladderRoyalService = $ladderRoyalService;
+        $this->ladderService = $ladderService;
+        $this->pairService = $pairService;
+        $this->threeOfAKindService = $threeOfAKindService;
     }
 
 
-    public function execute(Hand $hand): bool
+    public function execute(Hand $hand): string
     {
-        if ($this->LadderRoyalService->execute($hand)) {
+        if ($this->ladderRoyalService->execute($hand)) {
             return TypesHand::TYPE_LADDER_ROYAL;
-        } elseif ($this->LadderColorService->execute($hand)) {
+        } elseif ($this->ladderColorService->execute($hand)) {
             return TypesHand::TYPE_LADDER_COLOR;
         } elseif ($this->pokerService->execute($hand)) {
             return TypesHand::TYPE_POKER;
-        } elseif ($this->FullService->execute($hand)) {
+        } elseif ($this->fullService->execute($hand)) {
             return TypesHand::TYPE_FULL;
-        } elseif ($this->ColorService->execute($hand)) {
+        } elseif ($this->colorService->execute($hand)) {
             return TypesHand::TYPE_COLOR;
-        } elseif ($this->LadderService->execute($hand)) {
+        } elseif ($this->ladderService->execute($hand)) {
             return TypesHand::TYPE_LADDER;
-        } elseif ($this->ThreeOfAKindService->execute($hand)) {
+        } elseif ($this->threeOfAKindService->execute($hand)) {
             return TypesHand::TYPE_THREE_OF_A_KIND;
-        } elseif ($this->DoublePairService->execute($hand)) {
+        } elseif ($this->doublePairService->execute($hand)) {
             return TypesHand::TYPE_DOUBLE_PAIR;
-        } elseif ($this->PairService->execute($hand)) {
+        } elseif ($this->pairService->execute($hand)) {
             return TypesHand::TYPE_PAIR;
         } else {
             return TypesHand::TYPE_NOTHING;

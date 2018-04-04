@@ -77,7 +77,7 @@ class LadderRoyalTest extends TestCase
      * @throws \Assert\AssertionFailedException
      * @throws \ReflectionException
      */
-    public function given_hand_with_ace_when_execute_then_return_true()
+    public function given_hand_with_ace_when_execute_then_return_false()
     {
         $return = (new LadderRoyalService(
             new AllCardHaveTheSameColors(),
@@ -95,7 +95,7 @@ class LadderRoyalTest extends TestCase
             )
         );
 
-        $this->assertTrue($return);
+        $this->assertFalse($return);
     }
 
     /**
