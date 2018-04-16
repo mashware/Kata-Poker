@@ -12,7 +12,7 @@ use Kata\Domain\Model\Hand\Hand;
 use Kata\Domain\Model\Hand\TypeHand;
 use Kata\Domain\Service\Poker\Combination\Util\CardSequenceOrder;
 
-class LadderService implements Combination
+class LadderService extends Combination
 {
     public function execute(Hand $hand): bool
     {

@@ -12,7 +12,7 @@ use Kata\Domain\Model\Hand\Hand;
 use Kata\Domain\Model\Hand\TypeHand;
 use Kata\Domain\Service\Poker\Combination\Util\CardGetCountRepeatIdentifier;
 
-class FullService implements Combination
+class FullService extends Combination
 {
     const COUNT_MIN_IDENTIFIER_FIRST = 3;
     const COUNT_MIN_IDENTIFIER_SECOND = 2;

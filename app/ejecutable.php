@@ -5,12 +5,12 @@ use Symfony\Component\Console\Application;
 
 use Kata\Infrastructure\Command\CheckRoundCommand;
 use Kata\Application\CheckRound\CheckRound;
-use Kata\Infrastructure\Domain\Model\CheckRound\CheckRoundCombination;
+use Kata\Domain\Service\Poker\CheckHandService;
 
 $application = new Application();
 
 $checkRound = new CheckRoundCommand(
-    new CheckRound(new CheckRoundCombination())
+    new CheckRound(new CheckHandService())
 );
 
 $application->addCommands([$checkRound]);

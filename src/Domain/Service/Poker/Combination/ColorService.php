@@ -12,7 +12,7 @@ use Kata\Domain\Model\Hand\Hand;
 use Kata\Domain\Model\Hand\TypeHand;
 use Kata\Domain\Service\Poker\Combination\Util\AllCardHaveTheSameColors;
 
-class ColorService implements Combination
+class ColorService extends Combination
 {
     public function execute(Hand $hand): bool
     {
