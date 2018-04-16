@@ -7,20 +7,25 @@ abstract class Combination
 {
     private $combination;
 
-    public function __construct(Combination $combination)
+    public function nextCombination(Combination $combination)
     {
         $this->combination = $combination;
     }
 
-    public function handle(Hand $hand): string
+    public function handle(Hand $hand): ?string
     {
         $processed = $this->execute($hand);
+        $type = null;
 
-        if (false === $processed) {
-            $processed = $this->combination->execute($hand);
+        switch (true) {
+            case $processed:
+                $type = $this->getType();
+                break;
+            case false === $processed && null !== $this->combination:
+                $type = $this->combination->handle($hand);
         }
 
-        return $processed;
+        return $type;
     }
     abstract public function execute(Hand $hand): bool;
     abstract public function getType(): string;

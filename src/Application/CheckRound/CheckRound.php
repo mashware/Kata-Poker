@@ -3,18 +3,18 @@ namespace Kata\Application\CheckRound;
 
 use Kata\Domain\Model\Card\Card;
 use Kata\Domain\Model\Hand\Hand;
-use Kata\Infrastructure\Domain\Model\CheckRound\CheckRoundCombination;
+use Kata\Domain\Service\Poker\CheckHandService;
 
 class CheckRound
 {
-    private $checkRoundCombination;
+    private $checkHandService;
 
-    public function __construct(CheckRoundCombination $checkRoundCombination)
+    public function __construct(CheckHandService $checkHandService)
     {
-        $this->checkRoundCombination = $checkRoundCombination;
+        $this->checkHandService = $checkHandService;
     }
 
-    public function execute(CheckRoundCommand $checkRoundCommand): string
+    public function execute(CheckRoundCommand $checkRoundCommand): ?string
     {
         $cards = $checkRoundCommand->getHand();
         $hand = new Hand(
@@ -27,6 +27,6 @@ class CheckRound
             ]
         );
 
-        return $this->checkRoundCombination->checkHand($hand);
+        return $this->checkHandService->execute($hand);
     }
 }
