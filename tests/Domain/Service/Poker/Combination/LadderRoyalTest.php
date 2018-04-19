@@ -10,12 +10,21 @@ use PHPUnit\Framework\TestCase;
 
 class LadderRoyalTest extends TestCase
 {
+    private $stubCheckCardHaveTheSameColor;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->stubCheckCardHaveTheSameColor = $this->createMock(CheckCardHaveTheSameColorsService::class);
+    }
+
     /**
      * @test
      */
     public function given_nothing_when_new_instance_ladder_royal_service_then_success()
     {
-        new LadderRoyalService();
+        new LadderRoyalService($this->stubCheckCardHaveTheSameColor);
     }
 
     /**
@@ -25,7 +34,7 @@ class LadderRoyalTest extends TestCase
      */
     public function given_service_when_execute_then_success()
     {
-        (new LadderRoyalService())->execute(
+        (new LadderRoyalService($this->stubCheckCardHaveTheSameColor))->execute(
             new Hand(
                 [
                     new Card(TypeCard::CLOVER, 1),
@@ -45,7 +54,7 @@ class LadderRoyalTest extends TestCase
      */
     public function given_hand_with_ace_when_execute_then_return_true()
     {
-        $return = (new LadderRoyalService())->execute(
+        $return = (new LadderRoyalService($this->stubCheckCardHaveTheSameColor))->execute(
             new Hand(
                 [
                     new Card(TypeCard::CLOVER, 2),
@@ -67,7 +76,7 @@ class LadderRoyalTest extends TestCase
      */
     public function given_hand_with_not_ace_when_execute_then_return_false()
     {
-        $return = (new LadderRoyalService())->execute(
+        $return = (new LadderRoyalService($this->stubCheckCardHaveTheSameColor))->execute(
             new Hand(
                 [
                     new Card(TypeCard::CLOVER, 2),
@@ -89,7 +98,7 @@ class LadderRoyalTest extends TestCase
      */
     public function given_winner_hand_when_execute_then_return_true()
     {
-        $return = (new LadderRoyalService())->execute(
+        $return = (new LadderRoyalService($this->stubCheckCardHaveTheSameColor))->execute(
             new Hand(
                 [
                     new Card(TypeCard::CLOVER, 1),

@@ -3,7 +3,7 @@ namespace Kata\Domain\Service\Poker\Combination\Util;
 
 use Kata\Domain\Model\Hand\Hand;
 
-class AllCardHaveTheSameColors
+class CheckCardHaveTheSameColorsService
 {
     /**
      * @param Hand $hand
